@@ -2,7 +2,7 @@ let histogram;
 
 function preload() {
   img = loadImage("https://i.iplsc.com/-/0009B9M82SRJD82N-C411.jpg");
-  
+  //oryginal img
 }
 
 function setup() {
