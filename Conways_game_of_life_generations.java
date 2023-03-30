@@ -3,6 +3,8 @@ function getGeneration(cells, generations) {
   let numCols = cells[0].length;
 
   let evolution = cells;
+  //efficiency is completly off - need to add more function_wise approach
+  //reduce the usage of checking neighbours to a possibility of their occurrence
   for (let g = 0; g < generations; g++) {
     let newGeneration = Array(numRows).fill().map(() => Array(numCols).fill(0));
     for (let i = 0; i < numRows; i++) {
