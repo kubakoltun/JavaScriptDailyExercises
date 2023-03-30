@@ -4,9 +4,11 @@ function getGeneration(cells, generations) {
 
   let evolution = cells;
   //efficiency is completly off - need to add more function_wise approach
-  //reduce the usage of checking neighbours to a possibility of their occurrence
+  //generations do not scale - meaning that array does not change while it should in case of a new alive cells
   for (let g = 0; g < generations; g++) {
     let newGeneration = Array(numRows).fill().map(() => Array(numCols).fill(0));
+    
+    //reduce the usage of checking neighbours to a possibility of their occurrence
     for (let i = 0; i < numRows; i++) {
       for (let j = 0; j < numCols; j++) {
         let neighbours = 0;
