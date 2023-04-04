@@ -36,9 +36,7 @@ function getGeneration(cells, generations) {
         }
       }
     }
-
     evolution = newGeneration;
-    
   }
 
   // Check if the first row is all 0s
@@ -79,7 +77,6 @@ for (let j = 0; j < numCols; j++) {
   }
 }
 evolution.push(newLastRow);
-
 
   return evolution;
 }
