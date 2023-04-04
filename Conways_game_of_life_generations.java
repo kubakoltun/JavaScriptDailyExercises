@@ -50,19 +50,19 @@ function getGeneration(cells, generations) {
     evolution.pop(); // Remove the last row
   }
   let lastRow = evolution[numRows - 1];
-let newLastRow = Array(numCols).fill(0);
-for (let j = 0; j < numCols; j++) {
-  let neighbours = 0;
-
-  for (let di = -1; di <= 1; di++) {
-    for (let dj = -1; dj <= 1; dj++) {
-      if (di === 0 && dj === 0) continue;
-      let ni = numRows - 2 + di;
-      let nj = j + dj;
-      if (ni < 0 || ni >= numRows || nj < 0 || nj >= numCols) continue;
-      if (evolution[ni][nj] === 1) neighbours++;
-    }
-  }
+  let newLastRow = Array(numCols).fill(0);
+  
+  for (let j = 0; j < numCols; j++) {
+    let neighbours = 0;
+    for (let di = -1; di <= 1; di++) {
+      for (let dj = -1; dj <= 1; dj++) {
+        if (di === 0 && dj === 0) continue;
+        let ni = numRows - 2 + di;
+        let nj = j + dj;
+        if (ni < 0 || ni >= numRows || nj < 0 || nj >= numCols) continue;
+        if (evolution[ni][nj] === 1) neighbours++;
+      }
+   }
 
   if (evolution[numRows - 1][j] === 1) {
     if (neighbours < 2 || neighbours > 3) {
