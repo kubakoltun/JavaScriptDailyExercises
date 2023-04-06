@@ -6,7 +6,7 @@ const C = {x:100, y:500};
 //animate the whole cycle
 
 function setup() {
-  noLoop();
+  noLoop(); //do loop it but suposingly with low refresh rate
   createCanvas(800, 600);
 }
 
