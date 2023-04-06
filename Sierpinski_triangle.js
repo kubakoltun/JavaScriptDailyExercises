@@ -2,6 +2,9 @@ const A = {x:400, y:20};
 const B = {x:700, y:500};
 const C = {x:100, y:500};
 
+//restore the animated version
+//animate the whole cycle
+
 function setup() {
   createCanvas(800, 600);
 }
