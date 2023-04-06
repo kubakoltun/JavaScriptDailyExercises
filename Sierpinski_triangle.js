@@ -6,6 +6,7 @@ const C = {x:100, y:500};
 //animate the whole cycle
 
 function setup() {
+  noLoop();
   createCanvas(800, 600);
 }
 
