@@ -63,8 +63,7 @@ function score (dice) {
           else if (count > 3) {
             
             points += (count-3)*50;
-          }
-          else {
+          } else {
             points += count*50;
           }
           singleFives = true;
