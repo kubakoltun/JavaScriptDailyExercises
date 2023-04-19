@@ -1,11 +1,10 @@
-function tribonacci(signature,n){
+function tribonacci(signature, n) {
   var sum = 0;
   var j = 0;
   
   if (n == 0) {
     return [];
-  }
-  else {
+  } else {
     var arr  = signature;
   }
   if (n == 1) {
