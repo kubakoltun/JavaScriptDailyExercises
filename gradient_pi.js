@@ -10,7 +10,8 @@ function draw() {
       let dx = x - width/2;
       let dy = y - height/2;
       let part1 = (x+y)/(height+width)*255;
-      let d = sqrt(dx*dx+dy*dy);     
+      let d = sqrt(dx*dx+dy*dy);    
+      
       set(x, y, color(255-d, d, part1));
     }
   }
