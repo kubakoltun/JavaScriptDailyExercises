@@ -38,37 +38,30 @@ function get_pixel(x,y) {
   return pixels[idx];
 }
 
-//właściwa funkcja do wypełniania
 function flood_fill(x,y) {
-  var stack = []; //pusty stos
-  stack.push([x,y]); //wrzucenie współrzędnych kliknięcia na stos
+  var stack = [];
+  stack.push([x,y]); 
 
-  while(stack.length > 0) { //póki stos nie jest pusty
-    var current = stack.pop(); //zdejmowanie ostatniego elementu ze stosu
-    var cx = current[0]; //aktualna współrzędna x
-    var cy = current[1]; //aktualna współrzędna y
+  while(stack.length > 0) { 
+    var current = stack.pop(); 
+    var cx = current[0]; 
+    var cy = current[1]; 
 
-
-    //sprawdzenie poprawności współrzędnych
     if(cx < 0 || cx >= width || cy < 0 || cy >= height) {
       continue;
     }
 
-    //pobranie koloru bieżącego piksela
     var color = get_pixel(cx, cy);
 
-    //sprawdzenie czy kolor nie jest biały
     if(color != 255) {
       continue;
     }
 
-    //zamalowanie bieżącego piksela
     set_pixel(cx, cy, 200);
 
-    //dodanie sąsiadów bieżącego piksela na stos
-    stack.push([cx+1, cy]); //prawy sąsiad
-    stack.push([cx-1, cy]); //lewy sąsiad
-    stack.push([cx, cy+1]); //dolny sąsiad
-    stack.push([cx, cy-1]); //górny sąsiad
+    stack.push([cx+1, cy]); 
+    stack.push([cx-1, cy]); 
+    stack.push([cx, cy+1]); 
+    stack.push([cx, cy-1]); 
   }
 }
