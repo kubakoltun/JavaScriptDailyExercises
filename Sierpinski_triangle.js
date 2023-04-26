@@ -2,11 +2,9 @@ const A = {x:400, y:20};
 const B = {x:700, y:500};
 const C = {x:100, y:500};
 
-//restore the animated version
-//animate the whole cycle
 
 function setup() {
-  noLoop(); //do loop it but suposingly with low refresh rate
+  noLoop();
   createCanvas(800, 600);
 }
 
@@ -26,7 +24,7 @@ function draw() {
   let cx = x1;
   let cy = y1;
   for(let i = 0; i < 100000; i++) {
-    let rsc = Math.round(random(0, 3));
+    let rsc = Math.floor(random(0, 3));
     
     switch (rsc) {
       case 0:
