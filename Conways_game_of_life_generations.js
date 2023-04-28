@@ -39,15 +39,15 @@ function getGeneration(cells, generations) {
     evolution = newGeneration;
   }
 
-  // Check if the first row is all 0s
+  // check if the first row is all 0s
   while (evolution[0].every(cell => cell === 0)) {
-    evolution.shift(); // Remove the first row
-    evolution.push(Array(numCols).fill(0)); // Add a new row at the bottom with all 0s
+    evolution.shift(); // remove the first row
+    evolution.push(Array(numCols).fill(0)); // add a new row at the bottom with all 0s
   }
 
-  // Check if the last row has any live cells
+  // check if the last row has any live cells
   if (!evolution[numRows - 1].some(cell => cell === 1)) {
-    evolution.pop(); // Remove the last row
+    evolution.pop(); // remove the last row
   }
   let lastRow = evolution[numRows - 1];
   let newLastRow = Array(numCols).fill(0);
@@ -64,19 +64,19 @@ function getGeneration(cells, generations) {
       }
    }
 
-  if (evolution[numRows - 1][j] === 1) {
-    if (neighbours < 2 || neighbours > 3) {
-      newLastRow[j] = 0;
-    } else {
-      newLastRow[j] = 1;
-    }
-  } else {
-    if (neighbours === 3) {
-      newLastRow[j] = 1;
-    }
-  }
-}
-evolution.push(newLastRow);
+   if (evolution[numRows - 1][j] === 1) {
+     if (neighbours < 2 || neighbours > 3) {
+       newLastRow[j] = 0;
+     } else {
+       newLastRow[j] = 1;
+     }
+   } else {
+     if (neighbours === 3) {
+       newLastRow[j] = 1;
+     }
+   }
+ }
+ evolution.push(newLastRow);
 
-  return evolution;
+ return evolution;
 }
