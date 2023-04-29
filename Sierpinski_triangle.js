@@ -2,7 +2,6 @@ const A = {x:400, y:20};
 const B = {x:700, y:500};
 const C = {x:100, y:500};
 
-
 function setup() {
   noLoop();
   createCanvas(800, 600);
@@ -23,6 +22,7 @@ function draw() {
   let y3 = C.y;
   let cx = x1;
   let cy = y1;
+  
   for(let i = 0; i < 100000; i++) {
     let rsc = Math.floor(random(0, 3));
     
