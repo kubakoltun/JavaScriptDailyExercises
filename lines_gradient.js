@@ -32,7 +32,7 @@ function mouseReleased() {
 }
 
 function set_pixel(x, y, c) {
-  idx = (y * 512 + x) * 8; //ew 4
+  idx = (y * 512 + x) * 4;
   pixels[idx] = -c;
   pixels[idx + 1] = c;
   pixels[idx + 2] = 0;
@@ -49,7 +49,6 @@ function draw_line() {
     for(x=0; x<width; x++) {
       let dxy = (dy/dx)*(x-x0)-(y-y0);
       let dxyd = dxy*2*dx;
-      // dxy
       set_pixel(x, y, Math.round(dxyd));
     }
   }
