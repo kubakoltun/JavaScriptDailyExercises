@@ -3,11 +3,13 @@ function setup() {
   background(255);
 }
 
-var last_x=-1;
-var last_y=-1;
+let last_x=-1;
+let last_y=-1;
 
 function mouseDragged() {
-  if(mouseButton != LEFT) return;
+  if(mouseButton != LEFT) {
+    return;
+  }
   if(last_x>0) {
     line(last_x,last_y,mouseX,mouseY);
   }
@@ -39,19 +41,19 @@ function get_pixel(x,y) {
 }
 
 function flood_fill(x,y) {
-  var stack = [];
+  let stack = [];
   stack.push([x,y]); 
 
   while(stack.length > 0) { 
-    var current = stack.pop(); 
-    var cx = current[0]; 
-    var cy = current[1]; 
+    let current = stack.pop(); 
+    let cx = current[0]; 
+    let cy = current[1]; 
 
     if(cx < 0 || cx >= width || cy < 0 || cy >= height) {
       continue;
     }
 
-    var color = get_pixel(cx, cy);
+    let color = get_pixel(cx, cy);
 
     if(color != 255) {
       continue;
