@@ -1,6 +1,7 @@
 function is_valid_walk(walk) {
   inTime = false;
   walkingCord = 0;
+  
   if (walk.length != 10) {
     inTime = false;
   } 
