@@ -1,6 +1,6 @@
-var imgA;
-var imgB;
-var transformMatrix;
+let imgA;
+let imgB;
+let transformMatrix;
 
 function setup() {
   createCanvas(512, 512);
@@ -9,7 +9,7 @@ function setup() {
   imgB = createImage(512, 512);
   imgA.loadPixels();
   imgB.loadPixels();
-  var d = pixelDensity();
+  let d = pixelDensity();
 
   for (var i = 0; i < 512 * 512 * 4 * d; i += 4) {
     imgA.pixels[i] = 240;
@@ -42,21 +42,24 @@ function draw() {
 }
 
 function makeIdentity() {
-  return [    [1, 0, 0],
+  return [   
+    [1, 0, 0],
     [0, 1, 0],
     [0, 0, 1]
   ];
 }
 
 function makeTranslation(tx, ty) {
-  return [    [1, 0, tx],
+  return [   
+    [1, 0, tx],
     [0, 1, ty],
     [0, 0, 1]
   ];
 }
 
 function makeScale(sx, sy) {
-  return [    [sx, 0, 0],
+  return [  
+    [sx, 0, 0],
     [0, sy, 0],
     [0, 0, 1]
   ];
@@ -65,7 +68,8 @@ function makeScale(sx, sy) {
 function makeRotation(angle) {
   var c = Math.cos(angle);
   var s = Math.sin(angle);
-  return [    [c, -s, 0],
+  return [    
+    [c, -s, 0],
     [s, c, 0],
     [0, 0, 1]
   ];
