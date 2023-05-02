@@ -1,5 +1,4 @@
-function rot13(str) {
-  
+function rot13(str) { 
     let newStr = "";
     let charCode = 0;
   
