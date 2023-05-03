@@ -1,10 +1,9 @@
 function expression(number, operation) {
     if (!operation) {
       return number;
-    }
-  else {
+    } else {
       return operation(number);
-  }
+    }
 }
 
 function zero(operation) {return expression(0, operation);}
