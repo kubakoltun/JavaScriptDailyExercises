@@ -1,5 +1,4 @@
 function pickPeaks(arr) {
-  
   let output = {pos: [], peaks: []};
   let topPeak = arr[0];
   let topPos = 0;
