@@ -1,7 +1,6 @@
 function getGeneration(cells, generations) {
   let numRows = cells.length;
   let numCols = cells[0].length;
-
   let evolution = cells;
   //efficiency is completly off - need to add more function_wise approach
   //generations do not scale - meaning that array does not change while it should in case of a new alive cells
