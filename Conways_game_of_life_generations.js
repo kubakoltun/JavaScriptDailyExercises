@@ -1,4 +1,6 @@
 function getGeneration(cells, generations) {
+  //does not transform correctly
+  //complexity off
   if (cells.length === 0 || cells[0].length === 0) {
     return [[]]; 
   }
