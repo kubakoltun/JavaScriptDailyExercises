@@ -1,38 +1,48 @@
 function kprimesStep(k, step, start, nd) {
-  function isPrime(n) {
-    if (n <= 1) {
-      return false;
-    }
-    for (let i = 2; i <= Math.sqrt(n); i++) {
-      if (n % i === 0) {
-        return false;
+  function sievePrimes(limit) {
+    const sieve = new Array(limit + 1).fill(true);
+    sieve[0] = false;
+    sieve[1] = false;
+
+    for (let i = 2; i <= Math.sqrt(limit); i++) {
+      if (sieve[i]) {
+        for (let j = i * i; j <= limit; j += i) {
+          sieve[j] = false;
+        }
       }
     }
-    return true;
+
+    const primes = [];
+    for (let i = 2; i <= limit; i++) {
+      if (sieve[i]) {
+        primes.push(i);
+      }
+    }
+
+    return primes;
   }
 
-  function getPrimeFactors(n) {
-    let factors = [];
-    let i = 2;
-    while (i <= n) {
-      if (n % i === 0 && isPrime(i)) {
-        factors.push(i);
-        n /= i;
-      } else {
-        i++;
-      }
-    }
-    return factors;
-  }
+  const primes = sievePrimes(nd); // Generate primes up to the upper limit
 
   function countPrimeFactors(n) {
-    let factors = getPrimeFactors(n);
-    let count = factors.length;
+    let count = 0;
+    for (let i = 0; i < primes.length; i++) {
+      while (n % primes[i] === 0) {
+        count++;
+        n /= primes[i];
+        if (count > k) {
+          return 0;
+        }
+      }
+      if (n === 1) {
+        break;
+      }
+    }
     return count === k ? 1 : 0;
   }
 
   let result = [];
-  let current = start;
+  let current = Math.max(start, 2);
   while (current + step <= nd) {
     if (countPrimeFactors(current) === 1 && countPrimeFactors(current + step) === 1) {
       result.push([current, current + step]);
