@@ -1,4 +1,4 @@
-function  kprimesStep(k, step, start, nd) {
+function kprimesStep(k, step, start, nd) {
   function isPrime(n) {
     if (n <= 1) {
       return false;
@@ -27,34 +27,18 @@ function  kprimesStep(k, step, start, nd) {
 
   function countPrimeFactors(n) {
     let factors = getPrimeFactors(n);
-    let count = 0;
-    let currentFactor = factors[0];
-    let currentCount = 1;
-    for (let i = 1; i < factors.length; i++) {
-      if (factors[i] === currentFactor) {
-        currentCount++;
-      } else {
-        if (currentCount >= k) {
-          count++;
-        }
-        currentFactor = factors[i];
-        currentCount = 1;
-      }
-    }
-    if (currentCount >= k) {
-      count++;
-    }
-    return count;
+    let count = factors.length;
+    return count === k ? 1 : 0;
   }
 
   let result = [];
   let current = start;
   while (current + step <= nd) {
-    if (countPrimeFactors(current) === k && countPrimeFactors(current + step) === k) {
+    if (countPrimeFactors(current) === 1 && countPrimeFactors(current + step) === 1) {
       result.push([current, current + step]);
     }
     current++;
   }
 
-  return result.length > 0 ? result : [];
+  return result;
 }
