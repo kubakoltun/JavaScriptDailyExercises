@@ -1,7 +1,5 @@
 function longestConsec(strarr, k) {
-  console.log(strarr);
-  console.log(k);
-  const l = strarr.length-1;
+  const l = strarr.length;
   let maxJoin = "";
   let maxL = 0;
   let join = "";
@@ -10,9 +8,9 @@ function longestConsec(strarr, k) {
     return "";
   }
   
-  for (let i = 0; i < l+1; i++) {
+  for (let i = 0; i < l; i++) {
     join  = strarr[i];
-    for (let j = i+1; j < i+k; j++) {
+    for (let j = i+1; j < i+k && j < l; j++) {
       if (j > l) {
         break;
       }
