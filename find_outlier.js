@@ -1,7 +1,6 @@
 function find_outlier (integers) {
   var evenConfirm = 0;
   var oddConfirm = 0;
-  
   var evenHold = 0;
   var oddHold = 0;
   
@@ -20,8 +19,7 @@ function find_outlier (integers) {
       } 
     }
     return oddHold;
-  }
-  else {
+  } else {
     for (var g = 0; g < integers.length; g++) {
       if (integers[g] % 2 == 0) {
         evenHold = integers[g];
