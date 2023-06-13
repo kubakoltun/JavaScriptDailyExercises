@@ -5,7 +5,6 @@ const ACTIVITY_PROPERTY = [ "amount" , "createdate" ];
 const ACTIVITY_PROPERTY_DATE = 'createdate';
 
 exports.main = (event) => {
-
   const hubspotClient = new hubspot.Client({ accessToken: process.env.nsc });
   
   hubspotClient.crm.deals.basicApi
@@ -37,7 +36,6 @@ exports.main = (event) => {
           }
           else if (idsToMerge.length > 1) {
             console.log(`Found multiple potential deal IDs ${idsToMerge.join(', ')} to merge`);
-
             let dealToParse = "";
             let cdateHold = '2000-01-09T11:52:40.522Z';
             let cdateMax = new Date(cdateHold);
@@ -122,11 +120,11 @@ exports.main = (event) => {
         let data0 = new Date(cdatePropVal0);
         let data1 = new Date(cdatePropVal1);   
         
-	if (data0 < data1){
+	if (data0 < data1) {
             let temp = 0;
-			temp = idToMerge;
-			idToMerge = idMerged1;
-			idMerged1 = temp;
+	    temp = idToMerge;
+	    idToMerge = idMerged1;
+	    idMerged1 = temp;
         }
        
         let id0 = "";
