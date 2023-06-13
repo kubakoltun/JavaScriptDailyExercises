@@ -16,8 +16,8 @@ function setup() {
       let g = img.pixels[pos+1];
       let b = img.pixels[pos+2];
       let a = img.pixels[pos+3];
-      
       let index = Math.floor((r+g+b)/3);
+      
       histogram[index]++;
     }
   }
@@ -29,6 +29,7 @@ function setup() {
   for (let i = 0; i < histogram.length; i++) {
     let x = map(i, 0, histogram.length, 0, width);
     let h = map(histogram[i], 0, max(histogram), 0, height);
+    
     line(x, height, x, height - h);
   }
 }
