@@ -15,6 +15,7 @@ function tribonacci(signature, n) {
   }
   
   n -= signature.length+1;
+  
   for (var i = arr.length-1; n >= 0; i--) {
     j++;
     sum += arr[i];
