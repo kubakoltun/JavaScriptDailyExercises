@@ -10,6 +10,7 @@ function mouseDragged() {
   if(mouseButton != LEFT) {
     return;
   }
+  
   if(last_x>0) {
     line(last_x,last_y,mouseX,mouseY);
   }
@@ -20,6 +21,7 @@ function mouseDragged() {
 
 function mouseReleased() {
   last_x=last_y=-1;
+  
   if(mouseButton == RIGHT) {
     loadPixels();
     flood_fill(mouseX,mouseY);
