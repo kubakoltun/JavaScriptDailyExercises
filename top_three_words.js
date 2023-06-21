@@ -10,6 +10,7 @@ function top_three_words(text) {
   let replacedStrings = text.trim().replace(/[^a-zA-Z0-9 ']/g, "").split(/\s+/);
   let inSearch1 = replacedStrings.filter((str) => str !== '');
   let inSearch = inSearch1.filter((str) => str !== '\'');
+  
   for (let i = 0; i < inSearch.length; i++) {
     counter = 0; 
     differentWords = 0;
