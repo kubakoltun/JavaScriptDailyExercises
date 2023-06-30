@@ -1,12 +1,14 @@
 function top_three_words(text) {
   let counter = 0;
-  let hasCountedItsefl = false
+  let hasCountedItsefl = false;
+  
   let top1Counter = 0;
   let top2Counter = 0;
   let top3Counter = 0;
   let wordHold = "";
   let differentWords = 0;
   let podiumWords =  [];
+  
   let replacedStrings = text.trim().replace(/[^a-zA-Z0-9 ']/g, "").split(/\s+/);
   let inSearch1 = replacedStrings.filter((str) => str !== '');
   let inSearch = inSearch1.filter((str) => str !== '\'');
