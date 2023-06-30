@@ -7,6 +7,7 @@ function tribonacci(signature, n) {
   } else {
     var arr  = signature;
   }
+  
   if (n == 1) {
    return [signature[0]];
   }
