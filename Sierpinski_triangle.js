@@ -23,7 +23,7 @@ function draw() {
   let cx = x1;
   let cy = y1;
   
-  for(let i = 0; i < 100000; i++) {
+  for(let i = 0; i < 10000; i++) {
     let rsc = Math.floor(random(0, 3));
     
     switch (rsc) {
