@@ -6,9 +6,9 @@ function preload() {
 
 function setup() {
   createCanvas(256,256);
-  histogram = new Array(256).fill(0);
-  
+  histogram = new Array(256).fill(0); 
   img.loadPixels();
+  
   for(x=0;x<img.width;x++) {
     for(y=0;y<img.height;y++) {
       let pos = 4*(y*img.width+x);
