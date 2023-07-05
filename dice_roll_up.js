@@ -9,7 +9,7 @@ function score (dice) {
     
   	for (let i = 0; i < dice.length; i++) {
     	  count = 0;
-        for (let j = i; j < dice.length; j++) {
+         for (let j = i; j < dice.length; j++) {
           if (dice[i] == dice[j]) {
             count++;
           }
@@ -48,8 +48,7 @@ function score (dice) {
           }
           else if (count > 3) {
             points += (count-3)*100;
-          }
-          else {
+          } else {
             points += count*100;
           }
           singleOnes = true;
@@ -61,7 +60,6 @@ function score (dice) {
             }
           }
           else if (count > 3) {
-            
             points += (count-3)*50;
           } else {
             points += count*50;
