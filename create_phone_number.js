@@ -3,6 +3,7 @@ function createPhoneNumber(numbers){
   
   for (let i = 0; i < numbers.length; i++) {
     number += numbers[i];
+    
     if (i == 2) {
       number += ") ";
     }
