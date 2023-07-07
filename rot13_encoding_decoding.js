@@ -13,8 +13,7 @@ function rot13(str) {
             charCode += 13;
             newStr += String.fromCharCode(charCode);
           }
-      }
-      else {
+      } else {
         newStr += str.charAt(i);
       }
     }
