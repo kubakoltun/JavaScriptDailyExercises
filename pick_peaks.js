@@ -21,8 +21,7 @@ function pickPeaks(arr) {
         output.peaks.push(topPeak);
         topPos = 0;
       } 
-    } 
-    else {
+    } else {
       //{}
     }
   }
