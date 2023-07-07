@@ -4,8 +4,7 @@ function is_valid_walk(walk) {
   
   if (walk.length != 10) {
     inTime = false;
-  } 
-  else {
+  } else {
     for (var i = 0; i < walk.length; i++) {
       if (walk[i] == 'n') {
         walkingCord += 1;
@@ -23,8 +22,7 @@ function is_valid_walk(walk) {
     
     if (walkingCord == 0) {
       inTime = true;
-    } 
-    else {
+    } else {
       inTime = false;
     }
   }
