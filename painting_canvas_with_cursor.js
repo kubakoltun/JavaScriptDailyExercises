@@ -7,11 +7,11 @@ let last_x=-1;
 let last_y=-1;
 
 function mouseDragged() {
-  if(mouseButton != LEFT) {
+  if (mouseButton != LEFT) {
     return;
   }
   
-  if(last_x>0) {
+  if (last_x>0) {
     line(last_x,last_y,mouseX,mouseY);
   }
   
@@ -22,7 +22,7 @@ function mouseDragged() {
 function mouseReleased() {
   last_x=last_y=-1;
   
-  if(mouseButton == RIGHT) {
+  if (mouseButton == RIGHT) {
     loadPixels();
     flood_fill(mouseX,mouseY);
     updatePixels();
@@ -38,7 +38,7 @@ function set_pixel(x,y,c) {
 }
 
 function get_pixel(x,y) {
-  idx=(y*512+x)*4;
+  idx = (y*512+x)*4;
   return pixels[idx];
 }
 
@@ -51,13 +51,13 @@ function flood_fill(x,y) {
     let cx = current[0]; 
     let cy = current[1]; 
 
-    if(cx < 0 || cx >= width || cy < 0 || cy >= height) {
+    if (cx < 0 || cx >= width || cy < 0 || cy >= height) {
       continue;
     }
 
     let color = get_pixel(cx, cy);
 
-    if(color != 255) {
+    if (color != 255) {
       continue;
     }
 
