@@ -36,7 +36,6 @@ function draw() {
 }
 
 function makeVector(x, y) {
-
   return [x, y, 1];
 }
 
