@@ -22,23 +22,27 @@ function draw() {
       set(x, y, color(95, 197, 237));
     }
   }
+  
   //grass
   for(y = height/1.5; y < height; y++) {
     for(x = 0; x < width; x++) {  
       set(x, y, color(34, 125, 66));
     }
   }
+  
   //flowers
   for (let i = 0; i < flowers.length; i++) {
     let f = flowers[i];
     set(f.x, f.y, color(f.r, f.g, f.b));
   }
+  
   //walls
   for (y = height/3; y < height/1.5; y++) {
     for (x = width/4; x < floor(width/1.33); x++) {  
       set(x, y, color(122, 69, 26));
     }
   }
+  
   //roof
   const triangleWidth = floor(width/1.33);
   const triangleHeight = height/4;
