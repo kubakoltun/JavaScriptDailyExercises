@@ -10,10 +10,10 @@ function count_bananas(total) {
   let lemons = 0;
   let tomatoes = 0;
 
-  oranges = apples + 17;
-  pears = oranges * 0.6;
-  lemons = pears * (5 / 6);
-  apples = bananas / 3;
+  oranges =apples + 17;
+  pears =  Math.round(oranges * 0.6);
+  lemons =  Math.round(pears * (5 / 6));
+  apples =  Math.round(bananas / 3);
 
   tomatoes = total - bananas - apples - oranges - pears - lemons;
 
@@ -21,5 +21,5 @@ function count_bananas(total) {
     return false;
   }
 
-  return Math.min(bananas, total - tomatoes);
+  return Math.max(bananas, total - tomatoes);
 }
