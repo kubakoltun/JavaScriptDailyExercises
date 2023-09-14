@@ -1,21 +1,20 @@
 function countBananas(total) {
-  if (total < 67) {
-    return "false";
-  }
+  let lastValidBananas = false;
 
-  let apples = 0; 
-  let bananas = 0; 
+  for (let bananas = 0; ; bananas += 3) {
+    let apples = bananas / 3;
+    let oranges = 17 + apples;
+    let pears = oranges * 0.6;
+    let lemons = pears + pears * (5 / 6);
+    let sum = apples + oranges + pears + lemons + bananas;
 
-  while (true) {
-    let oranges = apples + 17;
-    let pears = Math.round(oranges * (40 / 100));
-    let lemons = Math.round(pears * (5 / 6));
-
-    if (apples + oranges + pears + lemons + bananas >= total) {
-      return bananas;
+    if (!Number.isInteger(pears)) continue;
+    if (!Number.isInteger(lemons)) continue;
+    
+    if (sum > total) {
+      if (bananas === 0) return false;
+      return lastValidBananas;
     }
-
-    apples++;
-    bananas += 3;
+    lastValidBananas = bananas;
   }
 }
