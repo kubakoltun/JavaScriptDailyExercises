@@ -1,87 +1,51 @@
 function getGeneration(cells, generations) {
-  //does not transform correctly
-  //complexity off
-  if (cells.length === 0 || cells[0].length === 0) {
-    return [[]]; 
+  var ce = JSON.parse(JSON.stringify(cells));
+  var minY;
+  var maxY;
+  var minX;
+  var maxX;
+
+  for (var i = 1; i <= generations; i++) {
+    expandUniverse();
+    ce = ce.map(function(r, row){return r.map(function(c, col){return setValue(row, col, -c);});});
+    getBoundaries();
+    shrinkUniverse();
   }
 
-  let numRows = cells.length;
-  let numCols = cells[0].length;
-  let evolution = cells.slice(); 
+  function setValue(row, col, sum) {
+    for (var r = row - 1; r <= row + 1; r++)
+      for (var c = col - 1; c <= col + 1; c++)
+        sum += (ce[r] && ce[r][c]) | 0;
 
-  for (let g = 0; g < generations; g++) {
-    let newGeneration = Array(numRows).fill().map(() => Array(numCols).fill(0));
+    return +(sum == 3 || sum == 2 && ce[row][col]);
+  }
 
-    for (let i = 0; i < numRows; i++) {
-      for (let j = 0; j < numCols; j++) {
-        let neighbours = 0;
-
-        for (let di = -1; di <= 1; di++) {
-          for (let dj = -1; dj <= 1; dj++) {
-            if (di === 0 && dj === 0) continue;
-            let ni = i + di;
-            let nj = j + dj;
-            if (ni < 0 || ni >= numRows || nj < 0 || nj >= numCols) continue;
-            if (evolution[ni][nj] === 1) neighbours++;
-          }
-        }
-
-        if (evolution[i][j] === 1) {
-          if (neighbours < 2 || neighbours > 3) {
-            newGeneration[i][j] = 0;
-          } else {
-            newGeneration[i][j] = 1;
-          }
-        } else {
-          if (neighbours === 3) {
-            newGeneration[i][j] = 1;
-          }
-        }
+  function getBoundaries() {
+    minY = maxY = minX = maxX = -1;
+    
+    ce.forEach(function(r, row){r.forEach(function(c, col){
+      if (c == 1) {
+        minY = minY == -1 ? row : Math.min(minY, row);
+        maxY = maxY == -1 ? row : Math.max(maxY, row);
+        minX = minX == -1 ? col : Math.min(minX, col);
+        maxX = maxX == -1 ? col : Math.max(maxX, col);
       }
-    }
-
-    evolution = newGeneration;
+    });});
   }
 
-  // Crop the evolution array
-  let firstRowIndex = -1;
-  let lastRowIndex = -1;
-  let firstColIndex = -1;
-  let lastColIndex = -1;
+  function expandUniverse() {
+    var a = [], b = [];
 
-  for (let i = 0; i < numRows; i++) {
-    for (let j = 0; j < numCols; j++) {
-      if (evolution[i][j] === 1) {
-        if (firstRowIndex === -1 || i < firstRowIndex) {
-          firstRowIndex = i;
-        }
-        if (lastRowIndex === -1 || i > lastRowIndex) {
-          lastRowIndex = i;
-        }
-        if (firstColIndex === -1 || j < firstColIndex) {
-          firstColIndex = j;
-        }
-        if (lastColIndex === -1 || j > lastColIndex) {
-          lastColIndex = j;
-        }
-      }
-    }
+    ce[0].forEach(function(){a.push(0); b.push(0);});
+    ce.unshift(a);
+    ce.push(b);
+    ce.map(function(i){i.unshift(0); i.push(0);});
   }
 
-  if (firstRowIndex === -1 || lastRowIndex === -1 || firstColIndex === -1 || lastColIndex === -1) {
-    return [[]]; 
+  function shrinkUniverse() {
+    ce = ce.map(function(e){ return e.slice(minX, maxX + 1);});
+    ce = ce.slice(minY, maxY + 1);
   }
 
-  if (lastRowIndex < numRows - 1) {
-    lastRowIndex++;
-  }
-  if (lastColIndex < numCols - 1) {
-    lastColIndex++;
-  }
-
-  let croppedEvolution = evolution
-    .slice(firstRowIndex, lastRowIndex + 1)
-    .map(row => row.slice(firstColIndex, lastColIndex + 1));
-
-  return croppedEvolution;
+  return ce;
 }
