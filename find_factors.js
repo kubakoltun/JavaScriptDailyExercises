@@ -1,4 +1,7 @@
-function find_factors(x) {
+function factors(x) {
+  if (!Number.isInteger(x) || x < 1) {
+    return -1;
+  }
   let factors = [];
   
   for (let i = x; i > 0; i--) {
