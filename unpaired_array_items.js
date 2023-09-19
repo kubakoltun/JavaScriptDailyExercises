@@ -1,4 +1,4 @@
-function hotSingles(arr1, arr2) {
+function unpaired_array_items(arr1, arr2) {
   const combinedArray = arr1.concat(arr2);
   let result = [];
   let len = combinedArray.length;
