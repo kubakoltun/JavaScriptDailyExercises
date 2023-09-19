@@ -10,7 +10,9 @@ function hotSingles(arr1, arr2) {
         count++;
       }
     }
-    if (count === 1) {
+    let additional_con1 = arr1.includes(combinedArray[i]) && !arr2.includes(combinedArray[i])
+    let additional_con2 = !arr1.includes(combinedArray[i]) && arr2.includes(combinedArray[i])
+    if ((count === 1 || additional_con1 || additional_con2) && !result.includes(combinedArray[i])) {
       result.push(combinedArray[i]);
     }
   }
