@@ -1,12 +1,19 @@
 function hotSingles(arr1, arr2) {
   const combinedArray = arr1.concat(arr2);
-  const elementCountMap = new Map();
+  let result = [];
+  let len = combinedArray.length;
 
-  combinedArray.forEach((element) => {
-    elementCountMap.set(element, (elementCountMap.get(element) || 0) + 1);
-  });
+  for (let i = 0; i < len; i++) {
+    let count = 0;
+    for (let j = 0; j < len; j++) {
+      if (combinedArray[i] === combinedArray[j]) {
+        count++;
+      }
+    }
+    if (count === 1) {
+      result.push(combinedArray[i]);
+    }
+  }
 
-  const uniqueElements = combinedArray.filter((element) => elementCountMap.get(element) === 1);
-
-  return uniqueElements;
+  return result;
 }
