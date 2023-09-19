@@ -1,4 +1,4 @@
-function combine(...objects) {
+function combine_objects(...objects) {
   const result = {};
 
   for (const obj of objects) {
