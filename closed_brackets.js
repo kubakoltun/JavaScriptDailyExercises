@@ -1,25 +1,27 @@
 function closed_brackets(str) {
-  let openCount = 0;
-  let jokerCount = 0;
+  const stack = [];
 
-  for (const char of str) {
-    if (char === '(') {
-      openCount++;
-    } 
-    else if (char === 'J') {
-      jokerCount++;
-    } 
-    else if (char === ')') {
-      if (openCount > 0) {
-        openCount--;
-      } 
-      else if (jokerCount > 0) {
-        jokerCount--;
+  for (let char of str) {
+    if (char === "(" || char === "J") {
+      stack.push(char);
+    } else if (char === ")") {
+      if (stack.length === 0) {
+        return false; 
+      } else if (stack[stack.length - 1] === "(") {
+        stack.pop();
+      } else if (stack[stack.length - 1] === "J") {
+        stack.pop(); 
       } else {
         return false; 
       }
     }
   }
 
-  return openCount === 0 || jokerCount >= openCount;
+  while (stack.length > 0) {
+    if (stack.pop() !== "(") {
+      return false; 
+    }
+  }
+
+  return true; 
 }
