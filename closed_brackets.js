@@ -1,27 +1,17 @@
-function closed_brackets(str) {
-  const stack = [];
-
-  for (let char of str) {
-    if (char === "(" || char === "J") {
-      stack.push(char);
-    } else if (char === ")") {
-      if (stack.length === 0) {
-        return false; 
-      } else if (stack[stack.length - 1] === "(") {
-        stack.pop();
-      } else if (stack[stack.length - 1] === "J") {
-        stack.pop(); 
-      } else {
-        return false; 
-      }
+function closed_brackets(s) {
+  let a = 0;
+  let b = 0;
+  
+  for (const x of s) {
+    if (x === '(') {
+      a += 1;
+      b += 1;
+    } else {
+      a = Math.max(a - 1, 0);
+      b += x === 'J' ? 1 : -1;
+      if (b < 0) return false;
     }
   }
-
-  while (stack.length > 0) {
-    if (stack.pop() !== "(") {
-      return false; 
-    }
-  }
-
-  return true; 
+  
+  return a === 0;
 }
