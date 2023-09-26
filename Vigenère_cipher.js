@@ -4,17 +4,18 @@ function Vigenère_cipher(key, abc) {
     let letter = "";
     let j = 0;
     
-    for (let i = 0; i < str.length; i++) {
-      let shiftC = key.charCodeAt(j)-97;
+    for (let i = 0; i < str.length; i++) {     
+      let shiftC = abc.indexOf(key.charAt(j));
+      let letterPosition = abc.indexOf(str.charAt(i));
 
-      letter = String.fromCharCode(str.charCodeAt(i)+shiftC);
+      letter = abc.charAt(letterPosition+shiftC);
       
-      if (!abc.includes(String.fromCharCode(str.charCodeAt(i)))) {
-        res += String.fromCharCode(str.charCodeAt(i))
+      if (!abc.includes(str.charAt(i))) {
+        res += str.charAt(i);
       } else {
-        if (str.charCodeAt(i)-97+shiftC > 25) {
-          let period = str.charCodeAt(i)-97+shiftC - 25;
-          letter = String.fromCharCode(period+96);
+        if (letterPosition+shiftC > abc.length-1) {
+          let period = letterPosition+shiftC - abc.length;
+          letter = abc.charAt(period);
         }
         res += letter;
       }
@@ -27,22 +28,22 @@ function Vigenère_cipher(key, abc) {
     return res;
   };
   this.decode = function (str) {
-    console.log(str)
     let res = "";
     let letter = "";
     let j = 0;
+    
+    for (let i = 0; i < str.length; i++) {     
+      let shiftC = abc.indexOf(key.charAt(j));
+      let letterPosition = abc.indexOf(str.charAt(i));
 
-    for (let i = 0; i < str.length; i++) {
-      let shiftC = (key.charCodeAt(j)-97);
-
-      letter = String.fromCharCode(str.charCodeAt(i)-shiftC);
-
-      if (!abc.includes(String.fromCharCode(str.charCodeAt(i)))) {
-        res += String.fromCharCode(str.charCodeAt(i))
+      letter = abc.charAt(letterPosition-shiftC);
+      
+      if (!abc.includes(str.charAt(i))) {
+        res += str.charAt(i);
       } else {
-        if (str.charCodeAt(i)-97-shiftC < 0) {
-          let period = str.charCodeAt(i)-97-shiftC + 25;
-          letter = String.fromCharCode(period+98);
+        if (letterPosition-shiftC < 0) {
+          let period = letterPosition-shiftC + abc.length;
+          letter = abc.charAt(period);
         }
         res += letter;
       }
