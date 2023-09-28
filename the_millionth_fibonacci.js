@@ -1,18 +1,17 @@
-function the_millionth_fibonacci(n) {
-  const fibArray = [BigInt(0), BigInt(1)];
+const f = [0n, 1n];
 
+function fib(n) {
+  const odd = n & 1;
+  
   if (n < 0) {
-    for (let i = -1; i >= n; i--) {
-      const nextFib = fibArray[0] - fibArray[1];
-      fibArray.unshift(nextFib);
-    }
+    return BigInt(-!odd | 1) * fib(-n);
   }
-  else {
-    while (fibArray.length <= n) {
-      const nextFib = fibArray[fibArray.length - 1] + fibArray[fibArray.length - 2];
-      fibArray.push(nextFib);
-    }
+  
+  if (typeof f[n] == 'undefined') {
+    const k = n >> 1;
+    const fibk = fib(k);
+    f[n] = odd ? fib(k + 1) ** 2n + fibk ** 2n : (2n * fib(k - 1) + fibk) * fibk; 
   }
-
-  return fibArray[n];
+  
+  return f[n]; 
 }
