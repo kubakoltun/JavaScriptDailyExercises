@@ -1,4 +1,4 @@
-function checkCoupon(enteredCode, correctCode, currentDate, expirationDate){
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
   const currentDateObj = new Date(currentDate);
   const expirationDateObj = new Date(expirationDate);
 
