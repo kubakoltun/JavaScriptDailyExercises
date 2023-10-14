@@ -1,48 +1,20 @@
+function make_a_spiral(n) {
+  const spiral = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));
+  let i = 0;
+  let j = 0;
+  let direction = 0;
 
-function make_a_spiral(size) {
-  const spiral = Array.from({ length: size }, () => Array(size).fill(0));
-  
-  let num = 1; 
-  let left = 0;
-  let right = size - 1;
-  let top = 0;
-  let bottom = size - 1;
-  
-  while (left <= right && top <= bottom) {
-    for (let i = left; i <= right; i++) {
-      spiral[top][i] = num;
-      num++;
-    }
-    top++;
-
-    for (let i = top; i <= bottom; i++) {
-      spiral[i][right] = num;
-      num++;
-    }
-    right--;
-
-    if (top <= bottom) {
-      for (let i = right; i >= left; i--) {
-        spiral[bottom][i] = num;
-        num++;
-      }
-      bottom--;
-    }
-
-    if (left <= right) {
-      for (let i = bottom; i >= top; i--) {
-        spiral[i][left] = num;
-        num++;
-      }
-      left++;
+  while (i < n && j < n) {
+    spiral[i][j] = 1;
+    const nextI = i + (direction === 0 ? 1 : direction === 1 ? 0 : -1);
+    const nextJ = j + (direction === 0 ? 0 : direction === 2 ? -1 : 1);
+    if (nextI < 0 || nextI >= n || nextJ < 0 || nextJ >= n || spiral[nextI][nextJ] === 1) {
+      direction = (direction + 1) % 4;
+    } else {
+      i = nextI;
+      j = nextJ;
     }
   }
 
   return spiral;
-}
-
-function displaySpiral(spiral) {
-  for (let row of spiral) {
-    console.log(row.join(''));
-  }
 }
