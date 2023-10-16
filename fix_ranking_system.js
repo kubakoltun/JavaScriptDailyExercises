@@ -14,9 +14,11 @@ class User {
 
     if (rankDifference === 0) {
       progressEarned = 3;
-    } else if (rankDifference === -1 && this.rank !== -1) {
+    } 
+    else if (rankDifference === -1 && this.rank !== -1) {
       progressEarned = 1;
-    } else if (rankDifference > 0) {
+    } 
+    else if (rankDifference > 0) {
       progressEarned = 10 * rankDifference * rankDifference;
     }
 
