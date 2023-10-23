@@ -1,49 +1,54 @@
-function uno_redo(object) {
-  let state = { object: { ...object }, history: [], current: -1, maxUndo: -1 };
+function fix_uno_redo(object) {
+  let commands = [];
+  let index = -1;
 
-  function set(key, value) {
-    if (state.object[key] !== value) {
-      state.history = state.history.slice(0, state.current + 1);
-      state.history.push({ key, value: state.object[key] });
-      state.object[key] = value;
-      state.current++;
-      state.maxUndo = state.current;
-    }
-  }
-
-  function get(key) {
-    return state.object[key];
-  }
-
-  function del(key) {
-    if (state.object.hasOwnProperty(key)) {
-      state.history = state.history.slice(0, state.current + 1);
-      state.history.push({ key, value: state.object[key] });
-      delete state.object[key];
-      state.current++;
-      state.maxUndo = state.current;
-    }
-  }
-
-  function undo() {
-    if (state.current >= 0) {
-      const { key, value } = state.history[state.current];
-      state.object[key] = value;
-      state.current--;
-    } else {
-      throw new Error('Nothing to undo');
-    }
-  }
-
-  function redo() {
-    if (state.current < state.maxUndo) {
-      state.current++;
-      const { key, value } = state.history[state.current];
-      state.object[key] = value;
-    } else {
-      throw new Error('Nothing to redo');
-    }
-  }
-
-  return { set, get, del, undo, redo };
+  return {
+    set: function(key, value) {
+      commands.splice(index + 1);
+      commands.push({
+        type: "set",
+        key: key,
+        value: value,
+      });
+      index++;
+      object[key] = value;
+    },
+    get: function(key) {
+      return object[key];
+    },
+    del: function(key) {
+      commands.splice(index + 1);
+      commands.push({
+        type: "del",
+        key: key,
+        value: object[key],
+      });
+      index++;
+      delete object[key];
+    },
+    undo: function() {
+      if (index < 0 || commands[index] === null) {
+        throw new Error("No operation to undo");
+      }
+      const command = commands[index];
+      index--;
+      if (command.type === "set") {
+        delete object[command.key];
+      } else if (command.type === "del") {
+        object[command.key] = command.value;
+      }
+    },
+    redo: function() {
+      if (index >= commands.length - 1 || commands[index + 1] === null) {
+        throw new Error("No operation to redo");
+      }
+      index++;
+      const command = commands[index];
+      if (command.type === "set") {
+        object[command.key] = command.value;
+      } else if (command.type === "del") {
+        delete object[command.key];
+      }
+    },
+  };
 }
