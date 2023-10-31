@@ -1,4 +1,4 @@
-function spiralize(size) {
+function make_a_spiral(size) {
   if (size == 2) return [ [1,1], [0,1] ];
   if (size == 3) return [ [1,1,1], [0,0,1], [1,1,1] ];
 
