@@ -1,20 +1,19 @@
-function make_a_spiral(n) {
-  const spiral = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));
-  let i = 0;
-  let j = 0;
-  let direction = 0;
+function spiralize(size) {
+  if (size == 2) return [ [1,1], [0,1] ];
+  if (size == 3) return [ [1,1,1], [0,0,1], [1,1,1] ];
 
-  while (i < n && j < n) {
-    spiral[i][j] = 1;
-    const nextI = i + (direction === 0 ? 1 : direction === 1 ? 0 : -1);
-    const nextJ = j + (direction === 0 ? 0 : direction === 2 ? -1 : 1);
-    if (nextI < 0 || nextI >= n || nextJ < 0 || nextJ >= n || spiral[nextI][nextJ] === 1) {
-      direction = (direction + 1) % 4;
-    } else {
-      i = nextI;
-      j = nextJ;
-    }
+  let base = spiralize(size-2);
+  let res = [[], []];
+
+  for (let i = 0; i < size; i++) {
+    (res[0].push(1)) && (res[1].push(0));
   }
+  res[1][size-1] = 1;
 
-  return spiral;
+  for (let i = size-3; i >= 0; i--) {
+  	res.push(base[i].reverse().concat([0,1]));
+  }
+  res[size-1][size-2] = 1;
+  
+  return res;
 }
