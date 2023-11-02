@@ -49,6 +49,7 @@ function six_by_six_skyscrapers(clues) {
   function visibleCount(row) {
     let max = 0;
     let count = 0;
+    
     for (let i = 0; i < size; i++) {
       if (row[i] > max) {
         max = row[i];
