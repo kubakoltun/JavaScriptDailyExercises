@@ -39,7 +39,6 @@ class Thing {
 class ThingArray extends Array {
   constructor(count, name) {
     super(count);
-    
     for (let i = 0; i < count; i++) {
       this[i] = new Thing(name);
     }
