@@ -1,37 +1,14 @@
+const ltr = /[a-zA-Z]/g;
 
-function simplify(equalities, formula) {
-  const variableDict = {}; 
+function simplify(equalities,formula) {
+  equalities = equalities.map(eq => {
+    return eq.replace(/ /g,"").split("=");
+  });
 
-  function parseTerm(term) {
-    const parts = term.trim().split(" ");
-    const coefficient = parseInt(parts[0]) || 1;
-    const variable = parts[1];
-    return { coefficient, variable };
+  while (formula.split("").filter(l => equalities.find(a=>a[1]==l)).length) {
+    formula = formula.replace(ltr, l => "("+(equalities.find(a=>a[1]==l)||[l])[0]+")");
   }
+  let x = formula.match(ltr)[0];
 
-  for (const equality of equalities) {
-    const [left, right] = equality.split('=').map(side => side.trim());
-    const leftTerm = parseTerm(left);
-    const rightTerm = parseTerm(right);
-    variableDict[rightTerm.variable] = {
-      coefficient: leftTerm.coefficient - rightTerm.coefficient,
-    };
-  }
-
-  for (const variable in variableDict) {
-    const regex = new RegExp(variable, 'g');
-    formula = formula.replace(regex, `(${variableDict[variable].coefficient})`);
-  }
-
-  try {
-    let result = eval(formula);
-    
-    if (result === 1) {
-      return '1';
-    } else {
-      return result.toString();
-    }
-  } catch (error) {
-    return "Invalid formula"; 
-  }
+  return eval(formula.replace(ltr, "(1)").replace(/(\d)\(/g, "$1*("))+x;
 }
