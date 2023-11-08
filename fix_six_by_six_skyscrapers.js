@@ -31,6 +31,7 @@ function six_by_six_skyscrapers(clues) {
         }
       }
     }
+    
     return true;
   }
 
@@ -43,6 +44,7 @@ function six_by_six_skyscrapers(clues) {
         return false;
       }
     }
+    
     return true;
   }
 
@@ -56,6 +58,7 @@ function six_by_six_skyscrapers(clues) {
         count++;
       }
     }
+    
     return count;
   }
 
