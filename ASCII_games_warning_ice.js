@@ -2,7 +2,6 @@ function IceMazeSolver(map) {
     const width = map.split("\n")[0].length;
     map = map.replace(/\n/g, "");
     const height = map.length / width;
-
     const walks = [
         {dir: "u", start: 0,                  step: width,  numSteps: height, shift: 1    },
         {dir: "r", start: width-1,            step: -1,     numSteps: width,  shift: width},
