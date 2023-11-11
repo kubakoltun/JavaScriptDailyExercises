@@ -1,4 +1,3 @@
-crossword-puzzle-solver.js
 function crossWord(puzzle, words) {
   words = words.sort((a, b) => (a > b ? 1 : -1));
 
