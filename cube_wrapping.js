@@ -1,6 +1,5 @@
 let paths = [[1,2,4,5], [0,5,3,2], [0,1,3,4], [1,5,4,2], [0,2,3,5], [0,4,3,1]];
 let directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
-
 let wrap_cube = function(shape) {
   let net = shape.split('\n').map(s => [...s]);
   let faces = new Array(6).fill().map(() => []);
@@ -26,7 +25,7 @@ let wrap_cube = function(shape) {
     }
   }
 
-  let x0 , y0;
+  let x0, y0;
   y0 = net.findIndex(e => -1 != (x0 = e.findIndex(s => s != ' ')));
   wrap(0, 1, 0, x0, y0, true);
 
