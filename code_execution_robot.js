@@ -8,8 +8,8 @@ function execute(code) {
       );
   }
   code = code.replace(/[LFR]\d+/g, m => m[0].repeat(+m.slice(1)));
-  
   const patterns = {};
+  
   while (code.includes('p')) {
     const a = code.lastIndexOf('p'), b = code.indexOf('q', a);
     const n = code.slice(a+1).match(/^\d+/)[0];
@@ -43,8 +43,8 @@ function execute(code) {
         robot.d = (robot.d + (c === 'L' ? 3 : 1)) % 4;
       }
   });
-  return [...Array(d-u+1)].map((_,y) => 
-           [...Array(r-l+1)].map((v,x) => 
+  return [...Array(d-u+1)].map((_, y) => 
+           [...Array(r-l+1)].map((v, x) => 
              points.has((y+u)+','+(x+l)) ? '*' : ' ').join``
            ).join`\r\n`
 }
