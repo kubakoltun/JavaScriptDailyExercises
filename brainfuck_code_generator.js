@@ -6,7 +6,6 @@ function generateBFProgramAdvanced(s) {
     }
     return result;
   }
-
   let program = "++++++++++";
   let cells = [0].concat(uniq(s.split("").map(e => Math.round(e.charCodeAt() / 10) * 10)));
   program += "[";
